@@ -55,18 +55,31 @@ function applyFilters(formData, books){
     return result; 
 }
 
-//"show more button function"
-
-function handleShowMore(button, matches) {
-    const fragement = document.createDocumentFragement(); 
-    const start = page * BOOKS_PER_PAGE; 
-    const end = ()
+//"Update show more button function"
+function updateListButton(button, remaining) {
+    button.disabled = remaining <= 0; 
+    button.innerHTML = `
+    <span>Show more</span>
+    <span class="list__remaining"> (${remaining})</span>
+    `; 
 }
 
+//Function to handle the show more button functionalities when clicked
+function handleShowMore(button, matches) {
+    const fragment = document.createDocumentFragement(); 
+    const start = page * BOOKS_PER_PAGE; 
+    const end = (page + 1) * BOOKS_PER_PAGE; 
 
+    for (const book of matches.slice(start, end)) {
+        const element = createBookElement(book); 
+        fragment.appendChild(element); 
+    }
+    document.querySelector('[data-list-items]').appendChild(fragment); 
+    page++; 
+    updateListButton(button, Math.max(0, matches.length - (pahe * BOOKS_PER_PAGE))); 
+}
 
-
-
+//Pages and matches
 let page = 1;
 let matches = books
 
