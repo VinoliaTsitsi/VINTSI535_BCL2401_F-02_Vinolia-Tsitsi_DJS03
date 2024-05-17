@@ -30,6 +30,31 @@ function createBookElement(book){
     return element; 
 }
 
+//Function to apply filters to books
+function applyFilters(fromData, books){
+    const filters = object.fromEntries(fromData)
+    const result = []; 
+
+    for (const book of books){
+        let genreMatch = filters.genre === 'any'; 
+
+        for (const singleGenre of book.genres) {
+            if (genreMatch) break; 
+            if (singleGenre === filters.genre) {
+                genreMatch = true
+            }
+        }
+        if (
+            (filters.title.trim()=== '' || book.title.toLowerCase().includes(filters.title.toLowerCase()))&&
+            (filters.author === 'any' || book.author === filters.author) &&
+            genreMatch
+        ) {
+            result.push(book); 
+        }
+    }
+    return result; 
+}
+
 
 
 let page = 1;
