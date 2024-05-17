@@ -1,4 +1,16 @@
-import { books, authors, genres, BOOKS_PER_PAGE } from './data.js'
+import { books, authors, genres, BOOKS_PER_PAGE } from './data.js'; 
+
+//Function to render book previews
+function renderBookPreviewa(book, targetElement){
+    const frament = document.createDocumentFragment(); 
+    books.slice(0, BOOKS_PER_PAGE).forEach(book => {
+        const element = createBookElement(book); 
+        fragment.appendChild(element); 
+    }); 
+    targetElement.appendChild(fragment); 
+}
+
+
 
 let page = 1;
 let matches = books
