@@ -31,8 +31,8 @@ function createBookElement(book){
 }
 
 //Function to apply filters to books
-function applyFilters(fromData, books){
-    const filters = object.fromEntries(fromData)
+function applyFilters(formData, books){
+    const filters = object.fromEntries(formData)
     const result = []; 
 
     for (const book of books){
@@ -54,6 +54,16 @@ function applyFilters(fromData, books){
     }
     return result; 
 }
+
+//"show more button function"
+
+function handleShowMore(button, matches) {
+    const fragement = document.createDocumentFragement(); 
+    const start = page * BOOKS_PER_PAGE; 
+    const end = ()
+}
+
+
 
 
 
